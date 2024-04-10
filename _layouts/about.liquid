@@ -8,10 +8,33 @@ layout: default
         <span class="font-weight-bold">{{ site.first_name }}</span> {{ site.middle_name }}
         {{ site.last_name }}
       {% else %}
-        {{ site.title }}
+        <div style="text-align: center; padding-bottom: 20px;">
+          {{ site.title }}
+          {% if site.enable_darkmode %}
+            <!-- Toogle theme mode -->
+            <button id="light-toggle" title="Change theme">
+              <i class="ti ti-sun-moon" id="light-toggle-system"></i>
+              <i class="ti ti-moon-filled" id="light-toggle-dark"></i>
+              <i class="ti ti-sun-filled" id="light-toggle-light"></i>
+            </button>
+          {% endif %}
+        </div>
       {% endif %}
     </h1>
   </header>
+
+  
+  <div style="text-align: center; padding-bottom: 30px;">
+    sschoede@andrew.cmu.edu
+    &nbsp;&nbsp;&nbsp;
+    /
+    &nbsp;&nbsp;&nbsp;
+    <a href="{{ '/assets/pdf/SamSchoedelCV.pdf' | relative_url }}">CV</a>
+    &nbsp;&nbsp;&nbsp;
+    /
+    &nbsp;&nbsp;&nbsp;
+    <a href="https://github.com/sschoedel">GitHub</a>
+  </div>
 
   <article>
     {% if page.profile %}
@@ -21,7 +44,7 @@ layout: default
           {% if page.profile.image_circular %}
             {% assign profile_image_class = 'img-fluid z-depth-1 rounded-circle' %}
           {% else %}
-            {% assign profile_image_class = 'img-fluid z-depth-1' %}
+            {% assign profile_image_class = 'img-fluid' %}
           {% endif %}
           {% capture sizes %}(min-width: {{site.max_width}}) {{ site.max_width | minus: 30 | times: 0.3}}px, (min-width: 576px)
       30vw, 95vw"{% endcapture %}
@@ -37,6 +60,7 @@ layout: default
     {% endif %}
 
     <div class="clearfix">{{ content }}</div>
+
 
     <!-- News -->
     {% if page.news and site.announcements.enabled %}
@@ -55,11 +79,21 @@ layout: default
     {% endif %}
 
     <!-- Selected papers -->
-    {% if page.selected_papers %}
-      <h2>
-        <a href="{{ '/publications/' | relative_url }}" style="color: inherit">selected publications</a>
+    {% if page.papers %}
+      <h2 style="padding-top: 20px;">
+        {% comment %} <a href="{{ '/publications/' | relative_url }}" style="color: inherit">Research</a> {% endcomment %}
+        Research
       </h2>
       {% include selected_papers.liquid %}
+    {% endif %}
+    
+    <!-- Selected projects -->
+    {% if page.projects %}
+      <h2 style="padding-top: 20px;">
+        {% comment %} <a href="{{ '/projects/' | relative_url }}" style="color: inherit">Projects</a> {% endcomment %}
+        Projects
+      </h2>
+      {% include selected_projects.liquid %}
     {% endif %}
 
     <!-- Social -->

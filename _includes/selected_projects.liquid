@@ -1,0 +1,10 @@
+{% comment %} <div class="publications">
+  {% bibliography --group_by none --query @*[selected=true]* %}
+</div> {% endcomment %}
+
+<!-- _pages/projects.md -->
+<div class="publications">
+
+{% bibliography --query @*[project=true]* %}
+
+</div>

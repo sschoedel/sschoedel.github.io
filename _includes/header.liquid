@@ -107,7 +107,7 @@
               {% endif %}
             {% endif %}
           {% endfor %}
-          {% if site.enable_darkmode %}
+          {% comment %} {% if site.enable_darkmode %}
             <!-- Toogle theme mode -->
             <li class="toggle-container">
               <button id="light-toggle" title="Change theme">
@@ -116,7 +116,7 @@
                 <i class="ti ti-sun-filled" id="light-toggle-light"></i>
               </button>
             </li>
-          {% endif %}
+          {% endif %} {% endcomment %}
         </ul>
       </div>
     </div>
