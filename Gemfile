@@ -28,4 +28,4 @@ end
 
 # git_source(:github) { |schoedel.github.io| "https://github.com/sschoedel/sschoedel.github.io" }
 
-gem "github-pages", "~> 215", group: :jekyll_plugins
+# gem "github-pages", "~> 215", group: :jekyll_plugins
