@@ -25,3 +25,7 @@ group :other_plugins do
     gem 'feedjira'
     gem 'httparty'
 end
+
+# git_source(:github) { |schoedel.github.io| "https://github.com/sschoedel/sschoedel.github.io" }
+
+gem "github-pages", "~> 215", group: :jekyll_plugins
