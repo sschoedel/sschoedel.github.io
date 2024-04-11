@@ -12,7 +12,7 @@
         {% if entry.preview contains '://' %}
           <img class="preview z-depth-1 rounded" src="{{ entry.preview }}">
         {% else %}
-          {% assign entry_path = entry.preview | prepend: '/assets/img/publication_preview/' %}
+          {% assign entry_path = entry.preview | prepend: '/assets/img/previews/' %}
           {%
             include figure.liquid
             loading="eager"
@@ -51,7 +51,7 @@
     <!-- Title -->
     <div class="title">{{ entry.title }}</div>
     <!-- Author -->
-    <div class="author">{{ entry.authors }}</div>
+    <div class="author">{{ entry.authors | markdownify}}</div>
 
 
     <!-- Journal/Book title and date -->
@@ -81,8 +81,15 @@
       {{ entry.note | strip }}
     </div>
     
+    <!-- Awards -->
     {% if entry.award %}
       <div style="color: red;">{{ entry.award }}</div>
+    {% endif %}
+
+    
+    <!-- For projects -->
+    {% if entry.description %}
+      {{ entry.description | markdownify}}
     {% endif %}
 
     <!-- Links/Buttons -->
@@ -121,7 +128,10 @@
         {% endif %}
       {% endif %}
       {% if entry.video %}
-        <a class="abstract btn btn-sm z-depth-0" role="button">Video</a>
+        <a class="abstract btn btn-sm z-depth-0" role="button" href="{{ entry.video }}">Video</a>
+      {% endif %}
+      {% if entry.github %}
+        <a href="{{ entry.github }}" class="btn btn-sm z-depth-0" role="button">GitHub</a>
       {% endif %}
       {% if entry.blog %}
         <a href="{{ entry.blog }}" class="btn btn-sm z-depth-0" role="button">Blog</a>
@@ -227,12 +237,13 @@
         {% endhighlight %}
       </div>
     {% endif %}
-
+{% comment %} 
     {% if entry.video %}
       <!-- Hidden video block -->
       <div class="abstract hidden">
         <div style="text-align: center;">{% include video.liquid path=entry.video class="img-fluid rounded z-depth-1" controls=true %}</div>
       </div>
-    {% endif %}
+    {% endif %} {% endcomment %}
   </div>
+
 </div>

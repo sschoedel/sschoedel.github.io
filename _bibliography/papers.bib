@@ -1,23 +1,24 @@
 ---
 ---
 
-@string{aps = {American Physical Society,}}
+% Research
 
 @misc{tinympc-conic-codegen,
   title={Code Generation for Conic Model-Predictive Control on Microcontrollers with TinyMPC}, 
-  authors={Sam Schoedel*, Khai Nguyen*, Elakhya Nedumaran, Brian Plancher, and Zachary Manchester},
+  authors={**Sam Schoedel**\*, Khai Nguyen\*, Elakhya Nedumaran, Brian Plancher, and Zachary Manchester},
   booktitle={IEEE Conference on Decision and Control (CDC), 2024},
   arxiv={2403.18149},
   award={In review},
   pdf={https://arxiv.org/pdf/2403.18149.pdf},
   code={https://github.com/tinympc},
   website={https://tinympc.org/},
-  preview={ConicTinyMPC.png}
+  preview={ConicTinyMPC.png},
+  project={false}
 }
 
 @inproceedings{tinympc,
   title={TinyMPC: Model-Predictive Control on Resource-Constrained Microcontrollers}, 
-  authors={Khai Nguyen*, Sam Schoedel*, Anoushka Alavilli*, Brian Plancher, and Zachary Manchester},
+  authors={Khai Nguyen\*, **Sam Schoedel**\*, Anoushka Alavilli\*, Brian Plancher, and Zachary Manchester},
   booktitle={IEEE International Conference on Robotics and Automation (ICRA), 2024},
   arxiv={2310.16985},
   award={Nominated for Best Conference Paper Award, Best Student Paper Award, and Best Paper Award in Automation},
@@ -25,14 +26,34 @@
   video={https://www.youtube.com/watch?v=NKOrRyhcr6w},
   code={https://github.com/tinympc},
   website={https://tinympc.org/},
-  preview={TinyMPC.gif}
+  preview={TinyMPC.gif},
+  project={false}
 }
-
 
 @inproceedings{squeaky,
   title={Development of an Affordable and Modular 3D Printed Quadruped Robot}, 
-  authors={Sam Schoedel*, Alex Fuge*, Bhaben Kalita, and Alexander Leonessa},
+  authors={**Sam Schoedel**\*, Alex Fuge\*, Bhaben Kalita, and Alexander Leonessa},
   booktitle={International Mechanical Engineering Congress and Exposition (IMECE), 2022},
   link={https://asmedigitalcollection.asme.org/IMECE/proceedings-abstract/IMECE2022/86663/V004T06A017/1157006},
-  preview={squeaky2.jpg}
+  preview={squeaky2.jpg},
+  project={false}
+}
+
+
+% Projects
+
+@project{cart-pole,
+  title={Cart Pole},
+  description={An underactuated cart pole built from common 3D printer parts and a brushless motor. Built as a TA for [16-701, Optimal Control and Reinforcement Learning at CMU](https://optimalcontrol.ri.cmu.edu/) and used for various projects in the [Robotic Exploration Lab](https://optimalcontrol.ri.cmu.edu/).},
+  preview={cartpole.gif},
+  github={https://github.com/Rexlab-cartpole},
+  project={true}
+}
+
+@project{motor-controller,
+  title={Brushless Motor Controller},
+  description={A compact and open source brushless DC motor controller with CAN support that runs an ESP32 microcontroller with a TMC6200 motor driver.},
+  preview={motor-controller.jpg},
+  github={https://github.com/sschoedel/MiniBLDC_TMC6200_v2},
+  project={true}
 }

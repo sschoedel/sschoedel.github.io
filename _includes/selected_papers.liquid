@@ -5,6 +5,7 @@
 <!-- _pages/publications.md -->
 <div class="publications">
 
-{% bibliography %}
+{% bibliography --query @*[project=false]* %}
+{% comment %} {% bibliography %} {% endcomment %}
 
 </div>
