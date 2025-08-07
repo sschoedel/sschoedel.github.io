@@ -1,4 +1,4 @@
-FROM ubuntu:latest
+FROM ubuntu:22.04
 ENV DEBIAN_FRONTEND noninteractive
 
 Label MAINTAINER Amir Pourmand
@@ -10,7 +10,20 @@ RUN apt-get update -y && apt-get install -y --no-install-recommends \
     build-essential \
     zlib1g-dev \
     jupyter-nbconvert \
-    inotify-tools procps && \
+    inotify-tools procps \
+    nodejs \
+    python3 \
+    python3-pip \
+    python-is-python3 \
+    libgl1-mesa-glx \
+    libgl1-mesa-dri \
+    libgconf-2-4 \
+    libgtk-3-0 \
+    libgconf2-dev \
+    libnss3 \
+    libasound2 \
+    libxtst6 \
+    libxss1 && \
     apt-get clean && rm -rf /var/lib/apt/lists/* /var/cache/apt/archives/*
 
 
@@ -37,5 +50,7 @@ RUN bundle install --no-cache
 EXPOSE 8080
 
 COPY bin/entry_point.sh /tmp/entry_point.sh
+
+RUN chmod +x /tmp/entry_point.sh
 
 CMD ["/tmp/entry_point.sh"]
