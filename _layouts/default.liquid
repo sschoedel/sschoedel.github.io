@@ -68,5 +68,13 @@
     {% include scripts/progressBar.liquid %}
     {% include scripts/wechatModal.liquid %}
     {% include scripts/imageLayouts.liquid %}
+
+    <!-- Overlay root (single-page feel modal) -->
+    <div id="overlay-root" class="overlay-backdrop" aria-hidden="true">
+      <div class="overlay-panel" role="dialog" aria-modal="true" aria-labelledby="overlay-title">
+        <button class="overlay-close" aria-label="Close">&times;</button>
+        <div class="overlay-body" tabindex="0"></div>
+      </div>
+    </div>
   </body>
 </html>

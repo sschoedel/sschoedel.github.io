@@ -51,3 +51,210 @@ body.sticky-bottom-footer {
 *****************************************************************************/
 
 // TODO: redefine projects layout.
+
+/******************************************************************************
+ * Overlay (single-page style)
+ ******************************************************************************/
+
+.overlay-backdrop {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.20);
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 200ms ease-in-out;
+  z-index: 1050; // above header and content
+  // No blur on the backdrop; let the panel blur the page content behind
+}
+
+.overlay-backdrop.active {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+// Disable fade for animated open so the flyout is visible immediately
+.overlay-backdrop.no-fade {
+  transition: none !important;
+  opacity: 1 !important;
+}
+
+.overlay-panel {
+  position: absolute;
+  top: 3vh;
+  left: 50%;
+  transform: translateX(-50%);
+  width: min(960px, 92vw);
+  height: 94vh;
+  // Glossy, glassy background (Apple-like)
+  background: rgba(255, 255, 255, 0.12); // slightly transparent
+  color: var(--global-text-color);
+  border: 1px solid rgba(255, 255, 255, 0.30);
+  backdrop-filter: saturate(180%) blur(40px);
+  -webkit-backdrop-filter: saturate(180%) blur(40px);
+  border-radius: 16px;
+  box-shadow: 0 22px 60px rgba(0, 0, 0, 0.35);
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  will-change: transform, opacity;
+  position: relative;
+}
+
+// Subtle glossy sheen overlays
+.overlay-panel::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background:
+    radial-gradient(1200px 200px at top left, rgba(255, 255, 255, 0.28), transparent 60%),
+    radial-gradient(600px 120px at bottom right, rgba(255, 255, 255, 0.08), transparent 70%);
+}
+
+// Flyout element used during morph animation to overlay panel
+.overlay-flyout {
+  border: 1px solid rgba(255, 255, 255, 0.30);
+  background: rgba(255, 255, 255, 0.12);
+  // Strong blur to clearly show glass during motion
+  backdrop-filter: saturate(180%) blur(40px);
+  -webkit-backdrop-filter: saturate(180%) blur(40px);
+  border-radius: 16px;
+  box-shadow: 0 22px 60px rgba(0, 0, 0, 0.35);
+  will-change: top, left, width, height, border-radius;
+}
+
+.overlay-close {
+  position: absolute;
+  top: 10px;
+  right: 14px;
+  border: 1px solid rgba(255, 255, 255, 0.35);
+  background: rgba(255, 255, 255, 0.25);
+  -webkit-backdrop-filter: saturate(160%) blur(12px);
+  backdrop-filter: saturate(160%) blur(12px);
+  font-size: 22px;
+  line-height: 1;
+  color: var(--global-text-color);
+  cursor: pointer;
+  z-index: 2;
+  width: 36px;
+  height: 36px;
+  border-radius: 10px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  transition: background-color 160ms ease, transform 120ms ease;
+}
+
+.overlay-close:hover {
+  background: rgba(255, 255, 255, 0.35);
+  transform: scale(1.03);
+}
+
+.overlay-body {
+  padding: 18px 22px;
+  overflow: auto;
+}
+
+.overlay-body h2#overlay-title {
+  margin-top: 0;
+}
+
+// Improve publications/projects layout to look like clickable cards
+.publication-entry {
+  // no hover/highlight here; the outer row handles visuals
+  background: transparent;
+}
+
+// Ensure the inner text column never shows its own hover background/shadow
+.publication-entry:hover {
+  background: transparent !important;
+  box-shadow: none !important;
+}
+
+.project-grid .row {
+  display: block;
+}
+
+// Hover highlight for clickable preview rows
+.publication-row {
+  border-radius: 10px;
+  transition: background-color 180ms ease, box-shadow 180ms ease, transform 120ms ease;
+  cursor: pointer;
+}
+
+// Make the Bootstrap row itself feel like a card
+.publication-row {
+  padding: 8px 12px; // safe padding even on Bootstrap rows
+  margin-bottom: 8px;
+}
+
+.publication-row:hover {
+  background-color: rgba(0, 0, 0, 0.04);
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.08);
+}
+
+.publication-row:hover .title {
+  color: var(--global-theme-color);
+}
+
+.publication-row:hover img.preview {
+  transform: translateZ(0) scale(1.02);
+  transition: transform 180ms ease;
+}
+
+html[data-theme="dark"] .publication-row:hover {
+  background-color: rgba(255, 255, 255, 0.06);
+  box-shadow: 0 12px 28px rgba(0, 0, 0, 0.5);
+}
+
+.publication-row:focus {
+  outline: none;
+  box-shadow: 0 0 0 3px var(--global-theme-color);
+}
+
+// Remove any residual hover/active styles from inner column
+.no-hover,
+.no-hover:hover,
+.no-hover:focus {
+  background: transparent !important;
+  box-shadow: none !important;
+}
+
+// Remove dashed placeholder borders of hidden blocks that show up against hover bg
+.publication-row div.abstract.hidden,
+.publication-row div.award.hidden,
+.publication-row div.bibtex.hidden {
+  border: none !important;
+}
+
+// Dark mode glass tweaks
+html[data-theme="dark"] .overlay-panel {
+  background: linear-gradient(
+    135deg,
+    rgba(60, 60, 62, 0.25),
+    rgba(30, 30, 32, 0.18)
+  );
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  backdrop-filter: saturate(160%) blur(32px);
+  -webkit-backdrop-filter: saturate(160%) blur(32px);
+}
+
+html[data-theme="dark"] .overlay-panel::before {
+  background:
+    radial-gradient(1200px 200px at top left, rgba(255, 255, 255, 0.12), transparent 60%),
+    radial-gradient(600px 120px at bottom right, rgba(255, 255, 255, 0.06), transparent 70%);
+}
+
+html[data-theme="dark"] .overlay-close {
+  background: rgba(255, 255, 255, 0.12);
+  border-color: rgba(255, 255, 255, 0.20);
+}
+
+html[data-theme="dark"] .overlay-flyout {
+  background: linear-gradient(
+    135deg,
+    rgba(60, 60, 62, 0.25),
+    rgba(30, 30, 32, 0.18)
+  );
+  border: 1px solid rgba(255, 255, 255, 0.12);
+}

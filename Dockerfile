@@ -41,7 +41,7 @@ RUN gem install jekyll bundler
 
 RUN mkdir /srv/jekyll
 
-ADD Gemfile /srv/jekyll
+ADD Gemfile Gemfile.lock /srv/jekyll/
 
 WORKDIR /srv/jekyll
 
@@ -51,6 +51,7 @@ EXPOSE 8080
 
 COPY bin/entry_point.sh /tmp/entry_point.sh
 
-RUN chmod +x /tmp/entry_point.sh
+# Normalize potential CRLF line endings from Windows checkout
+RUN sed -i 's/\r$//' /tmp/entry_point.sh && chmod +x /tmp/entry_point.sh
 
 CMD ["/tmp/entry_point.sh"]

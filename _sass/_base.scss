@@ -838,6 +838,50 @@ footer.sticky-bottom {
   }
 }
 
+// Ensure overlay content uses the same button styling as publications list
+.overlay-body {
+  .links {
+    a.btn {
+      color: var(--global-text-color) !important;
+      border: 1px solid var(--global-text-color) !important;
+      background: transparent !important;
+      box-shadow: none !important;
+      padding-left: 1rem;
+      padding-right: 1rem;
+      padding-top: 0.25rem;
+      padding-bottom: 0.25rem;
+      margin-left: 0;
+      border-radius: 6px;
+
+      &:hover {
+        color: var(--global-theme-color) !important;
+        border-color: var(--global-theme-color) !important;
+      }
+    }
+    a.award.btn {
+      border-color: var(--global-highlight-color) !important;
+    }
+  }
+}
+
+// Fallback class applied via JS inside overlays to guarantee borders regardless of theme libs
+.overlay-body .links a.glass-btn,
+.overlay-body .links a.glass-btn:hover {
+  display: inline-block;
+  color: var(--global-text-color) !important;
+  border: 1px solid var(--global-text-color) !important;
+  background: transparent !important;
+  box-shadow: none !important;
+  padding: 0.25rem 1rem !important;
+  border-radius: 6px !important;
+  text-decoration: none !important;
+}
+
+.overlay-body .links a.glass-btn:hover {
+  color: var(--global-theme-color) !important;
+  border-color: var(--global-theme-color) !important;
+}
+
 // Rouge Color Customization
 figure.highlight {
   margin: 0 0 1rem;

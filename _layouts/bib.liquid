@@ -4,7 +4,7 @@
 <hr style="padding-bottom: 15px;">
 
 
-<div class="row" style="width: 100%; font-size: 14px;">
+<div class="row publication-row" data-entry-key="{{entry.key}}" style="width: 100%; font-size: 14px;" tabindex="0" role="button" aria-label="Open details">
   {% comment %} Thumbnail {% endcomment %}
   {% if site.enable_publication_thumbnails %}
     <div class="col-sm-3 {% if entry.preview %}preview{% else %}abbr{% endif %}">
@@ -19,7 +19,6 @@
             path=entry_path
             sizes = "500px"
             class="preview"
-            zoomable=true
             alt=entry.preview
           %}
         {% endif %}
@@ -47,7 +46,7 @@
   <!-- Entry bib key -->
   {% comment %} <div id="{{entry.key}}" class="{% if site.enable_publication_thumbnails %}col-sm-8{% else %}col-sm-10{% endif %}"> {% endcomment %}
   {% comment %} <div id="{{entry.key}}" class="col-sm-8"> {% endcomment %}
-    <div id="{{entry.key}}" class="col-sm">
+    <div id="{{entry.key}}" class="col-sm publication-entry no-hover" data-entry-key="{{entry.key}}">
     <!-- Title -->
     <div class="title">{{ entry.title }}</div>
     <!-- Author -->
